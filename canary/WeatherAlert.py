@@ -16,15 +16,17 @@ last edited: January 2015
 import os, sys
 from PyQt5.QtWidgets import (QWidget, QLabel, QLineEdit,
                              QTextEdit, QGridLayout, QApplication, QPushButton, QSizePolicy)
-from PyQt5.QtGui import QColor, QPainter, QPixmap
+from PyQt5.QtGui import QPixmap
+from PyQt5 import QtGui, QtSvg
 
 
-class Example(QWidget):
+class CanaryAlert(QWidget):
 
     def __init__(self):
         super().__init__()
 
         self.initUI()
+        self.paintUI()
 
     def toggleFS(self):
 
@@ -34,6 +36,10 @@ class Example(QWidget):
             self.showFullScreen()
 
     def initUI(self):
+
+        self.setGeometry(100,100,960,540)
+
+    def paintUI(self):
 
         toggleFullscreen = QPushButton(text="Fullscreen")
         toggleFullscreen.setCheckable(True)
@@ -47,7 +53,6 @@ class Example(QWidget):
 
         #18 x 32 cells with 60px per cell
         self.setLayout(grid)
-        self.setGeometry(300,300,960,540)
 
         banner = QWidget()
         banner.setStyleSheet("background: rgb(255,228,0)")
@@ -55,20 +60,27 @@ class Example(QWidget):
         bannerImg.setPixmap(QPixmap("res/banner_100.png"))
         bannerImg.setScaledContents(True)
         bannerImg.setSizePolicy(QSizePolicy.Maximum, QSizePolicy.Maximum)
-        #banner.setMaximumHeight()
+
+        icon = QtSvg.QSvgWidget("res/pause.svg")
+        icon.setGeometry(50,50,100,100)
 
         message = QLabel("Sign-Out paused.")
 
         grid.addWidget(banner, 0, 0, 2, 32)
         grid.addWidget(bannerImg, 0, 0, 2, 17)
+        grid.addWidget(icon, 5, 1, 10, 10)
         grid.addWidget(message, 4, 13, 14, 16)
-        #grid.addWidget(toggleFullscreen, 1, 0)
 
-        self.setWindowTitle("Canary")
+        self.setWindowTitle("Birdie")
         self.show()
+
+    def resizeEvent(self, a0: QtGui.QResizeEvent):
+
+        self.paintUI()
+        print("initing")
 
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
-    ex = Example()
+    alert = CanaryAlert()
     sys.exit(app.exec_())
