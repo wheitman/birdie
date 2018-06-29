@@ -34,28 +34,33 @@ Rectangle {
         sourceSize.height: 600
     }
 
-    Rectangle {
-        id: messageBox
-        anchors.left: alertIcon.right; anchors.right: parent.right; anchors.top: banner.bottom; anchors.bottom: parent.bottom
+    Rectangle{
+        id: messageArea
+        anchors{ left: alertIcon.right; right: parent.right; top: banner.bottom; bottom: parent.bottom; rightMargin: parent.width/15; leftMargin: parent.width/20 }
         color: "transparent"
+
         Text {
             id: messageHeading
-            text: "SIGN-OUT HAS BEEN PAUSED"
+            text: "Sign-Out Paused"
+            verticalAlignment: Text.AlignBottom
+            anchors { top: parent.top; bottom: parent.verticalCenter; left: parent.left; right: parent.right; topMargin: parent.height/10 }
+            font { family: "Segoe UI"; weight: Font.Bold }
             fontSizeMode: Text.Fit
             minimumPointSize: 24
-            width: parent.width
-            wrapMode: Text.Wrap
             font.pointSize: 200
-            anchors.bottom: messageBody.top; anchors.top: parent.top; anchors.right: parent.right; anchors.left: parent.left
-            font { family: "Segoe UI"; bold: true }
-            anchors.rightMargin: 25; anchors.leftMargin: 25
+            wrapMode: Text.Wrap
         }
+
         Text {
             id: messageBody
             text: "until 2pm due to heavy rain."
-            anchors.bottom: parent.bottom
+            verticalAlignment: Text.AlignTop
+            anchors { top: parent.verticalCenter; bottom: parent.bottom; left: parent.left; right: parent.right; bottomMargin: parent.height/4 }
+            font { family: "Segoe UI" }
             fontSizeMode: Text.Fit
-            minimumPointSize: messageHeading.minimumPointSize/2
+            minimumPointSize: 12
+            font.pointSize: 200
+            wrapMode: Text.Wrap
         }
     }
 }

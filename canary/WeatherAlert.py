@@ -24,7 +24,7 @@ if __name__ == '__main__':
     view = QQuickView()
     view.setResizeMode(QQuickView.SizeRootObjectToView)
     current_path = os.path.abspath(os.path.dirname(__file__))
-    qml_file = os.path.join(current_path, 'main.qml')
+    qml_file = os.path.join(current_path, 'Alert.qml')
     view.setSource(QUrl.fromLocalFile(qml_file))
     if view.status() == QQuickView.Error:
         sys.exit(-1)
