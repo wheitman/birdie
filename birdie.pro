@@ -1,5 +1,7 @@
-QT += quick
+QT += quick network
 CONFIG += c++11
+
+include($$PWD/lib/QtWebApp/httpserver/httpserver.pri)
 
 # The following define makes your compiler emit warnings if you use
 # any feature of Qt which as been marked deprecated (the exact warnings
@@ -13,7 +15,9 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
-    src/main.cpp
+    src/main.cpp \
+    src/requestmapper.cpp \
+    src/httpcanarycontroller.cpp
 
 RESOURCES += qml.qrc
 
@@ -27,3 +31,36 @@ QML_DESIGNER_IMPORT_PATH =
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
+
+DISTFILES += \
+    etc/webapp1.ini
+
+HEADERS += \
+    lib/QtWebApp/httpserver/httpconnectionhandler.h \
+    lib/QtWebApp/httpserver/httpconnectionhandlerpool.h \
+    lib/QtWebApp/httpserver/httpcookie.h \
+    lib/QtWebApp/httpserver/httpglobal.h \
+    lib/QtWebApp/httpserver/httplistener.h \
+    lib/QtWebApp/httpserver/httprequest.h \
+    lib/QtWebApp/httpserver/httprequesthandler.h \
+    lib/QtWebApp/httpserver/httpresponse.h \
+    lib/QtWebApp/httpserver/httpsession.h \
+    lib/QtWebApp/httpserver/httpsessionstore.h \
+    lib/QtWebApp/httpserver/staticfilecontroller.h \
+    lib/QtWebApp/logging/dualfilelogger.h \
+    lib/QtWebApp/logging/filelogger.h \
+    lib/QtWebApp/logging/logger.h \
+    lib/QtWebApp/logging/logglobal.h \
+    lib/QtWebApp/logging/logmessage.h \
+    lib/QtWebApp/qtservice/qtservice.h \
+    lib/QtWebApp/qtservice/qtservice_p.h \
+    lib/QtWebApp/qtservice/qtunixserversocket.h \
+    lib/QtWebApp/qtservice/qtunixsocket.h \
+    lib/QtWebApp/templateengine/template.h \
+    lib/QtWebApp/templateengine/templatecache.h \
+    lib/QtWebApp/templateengine/templateglobal.h \
+    lib/QtWebApp/templateengine/templateloader.h \
+    src/requestmapper.h \
+    src/httpcanarycontroller.h
+
+OTHER_FILES += etc/webapp1.ini
