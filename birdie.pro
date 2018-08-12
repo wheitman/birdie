@@ -17,7 +17,8 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
     src/main.cpp \
     src/requestmapper.cpp \
-    src/httpcanarycontroller.cpp
+    src/httpcanarycontroller.cpp \
+    src/canary.cpp
 
 RESOURCES += qml.qrc
 
@@ -61,6 +62,7 @@ HEADERS += \
     lib/QtWebApp/templateengine/templateglobal.h \
     lib/QtWebApp/templateengine/templateloader.h \
     src/requestmapper.h \
-    src/httpcanarycontroller.h
+    src/httpcanarycontroller.h \
+    src/canary.h
 
 OTHER_FILES += etc/webapp1.ini

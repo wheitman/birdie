@@ -7,6 +7,8 @@
 #include "httplistener.h"
 #include "httprequesthandler.h"
 #include "requestmapper.h"
+#include "canary.h"
+#include <QtGlobal>
 
 using namespace stefanfrings;
 
@@ -61,6 +63,11 @@ int main(int argc, char *argv[])
 
     //Start the HTTP server
     new HttpListener(listenerSettings, new RequestMapper(&app), &app);
+
+//    Canary::raiseAlarm(2);
+//    if(Canary::alarmRaised()==1){
+//        qDebug("GENERAL alarm has been raised.");
+//    }
 
     //Enter the main program loop
     return app.exec();
