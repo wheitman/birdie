@@ -45,27 +45,32 @@ QString searchConfigFile() {
     }
 }
 
+Q_GLOBAL_STATIC(Canary, myCanary)
+Q_GLOBAL_STATIC(QQmlApplicationEngine, engine)
+
 int main(int argc, char *argv[])
 {
     QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
 
     QGuiApplication app(argc, argv);
 
+    qmlRegisterType<Canary>("com.birdie.canary",1,0,"Canary");
+
     //Load the main QML file
-    QQmlApplicationEngine engine;
-    engine.load(QUrl(QStringLiteral("qrc:/src/main.qml")));
-    if (engine.rootObjects().isEmpty())
+    //QQmlApplicationEngine engine;
+    engine->load(QUrl(QStringLiteral("qrc:/src/main.qml")));
+    if (engine->rootObjects().isEmpty())
         return -1;
 
-//    QObject *rootObject = engine.rootObjects().first();
+    QObject *rootObject = engine->rootObjects().first();
 
-//    QObject *button = rootObject->findChild<QObject *>("helloWorld");
-//    if(button){
-//        button->setProperty("text","yeet");
-//    }
-//    else {
-//        qDebug("not found");
-//    }
+    QObject *button = rootObject->findChild<QObject *>("helloWorld");
+    if(button){
+        button->setProperty("text","yeet");
+    }
+    else {
+        qDebug("not found");
+    }
 
     //Load the web configuration file
     QSettings* listenerSettings = new QSettings("../birdie/etc/webapp1.ini",QSettings::IniFormat,&app);
@@ -74,11 +79,14 @@ int main(int argc, char *argv[])
     //Start the HTTP server
     new HttpListener(listenerSettings, new RequestMapper(&app), &app);
 
-    Canary *myCanary = new Canary();
-    myCanary->raiseAlarm(1);
+    myCanary->raiseAlarm(2);
     Canary *newCanary = new Canary();
-    if(newCanary->alarmRaised()==1){
+    if(newCanary->currentAlarm()==1){
         qDebug("GENERAL alarm has been raised.");
+    }
+    else{
+        std::string alarm = "Current code is: "+std::to_string(newCanary->currentAlarm());
+        qDebug(alarm.c_str());
     }
 
     //Enter the main program loop
