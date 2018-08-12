@@ -57,6 +57,16 @@ int main(int argc, char *argv[])
     if (engine.rootObjects().isEmpty())
         return -1;
 
+//    QObject *rootObject = engine.rootObjects().first();
+
+//    QObject *button = rootObject->findChild<QObject *>("helloWorld");
+//    if(button){
+//        button->setProperty("text","yeet");
+//    }
+//    else {
+//        qDebug("not found");
+//    }
+
     //Load the web configuration file
     QSettings* listenerSettings = new QSettings("../birdie/etc/webapp1.ini",QSettings::IniFormat,&app);
     listenerSettings->beginGroup("listener");
@@ -64,10 +74,12 @@ int main(int argc, char *argv[])
     //Start the HTTP server
     new HttpListener(listenerSettings, new RequestMapper(&app), &app);
 
-//    Canary::raiseAlarm(2);
-//    if(Canary::alarmRaised()==1){
-//        qDebug("GENERAL alarm has been raised.");
-//    }
+    Canary *myCanary = new Canary();
+    myCanary->raiseAlarm(1);
+    Canary *newCanary = new Canary();
+    if(newCanary->alarmRaised()==1){
+        qDebug("GENERAL alarm has been raised.");
+    }
 
     //Enter the main program loop
     return app.exec();

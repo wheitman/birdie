@@ -18,7 +18,8 @@ SOURCES += \
     src/main.cpp \
     src/requestmapper.cpp \
     src/httpcanarycontroller.cpp \
-    src/canary.cpp
+    src/canary.cpp \
+    src/birdieqttools.cpp
 
 RESOURCES += qml.qrc
 
@@ -63,6 +64,7 @@ HEADERS += \
     lib/QtWebApp/templateengine/templateloader.h \
     src/requestmapper.h \
     src/httpcanarycontroller.h \
-    src/canary.h
+    src/canary.h \
+    src/birdieqttools.h
 
 OTHER_FILES += etc/webapp1.ini

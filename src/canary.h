@@ -7,11 +7,11 @@ class Canary : QObject
 {
     Q_OBJECT
 public:
-    static int raiseAlarm(int alarmType);
-    static int alarmRaised();
-    static int raiseAllClear();
-private:
+    int raiseAlarm(int alarmType);
+    int alarmRaised();
+    int raiseAllClear();
     Canary() {}
+private:
     static bool generalAlarmRaised;
     static bool weatherAlarmRaised;
     static bool fireAlarmRaised;

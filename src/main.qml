@@ -10,5 +10,6 @@ Window {
     Button {
         id: helloWorld
         text: "Hello, World!"
+        objectName: "helloWorld"
     }
 }

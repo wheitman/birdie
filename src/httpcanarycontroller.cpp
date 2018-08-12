@@ -1,5 +1,8 @@
 #include "httpcanarycontroller.h"
 #include "canary.h"
+#include <QQmlContext>
+#include <QQmlEngine>
+#include <QQmlApplicationEngine>
 
 HttpCanaryController::HttpCanaryController(QObject* parent) : HttpRequestHandler (parent)
 {
@@ -9,5 +12,6 @@ HttpCanaryController::HttpCanaryController(QObject* parent) : HttpRequestHandler
 void HttpCanaryController::service(HttpRequest& request, HttpResponse& response){
     qDebug("CANARY ALERT");
     response.write("Request received");
-    Canary::raiseAlarm(1);
+    Canary *myCanary = new Canary();
+    myCanary->raiseAlarm(1);
 }
