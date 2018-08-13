@@ -1,11 +1,13 @@
 #include "requestmapper.h"
+#include <QQmlApplicationEngine>
+#include "httpcanarycontroller.h"
 
 HttpSessionStore* RequestMapper::sessionStore=0;
 StaticFileController* RequestMapper::staticFileController=0;
 
 RequestMapper::RequestMapper(QObject* parent) : HttpRequestHandler (parent)
 {
-    //empty
+    qmlRegisterType<HttpCanaryController>("com.birdie.canary",1,0,"HttpCanaryController");
 }
 
 void RequestMapper::service(HttpRequest& request, HttpResponse& response){
