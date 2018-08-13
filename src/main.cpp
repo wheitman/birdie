@@ -57,24 +57,27 @@ int main(int argc, char *argv[])
     qmlRegisterType<Canary>("com.birdie.canary",1,0,"Canary");
 
     //Load the main QML file
-    QQmlApplicationEngine engine;
+    //QQmlApplicationEngine engine;
     //QQmlApplicationEngine *engine = &BirdieQtTools::engine;
-    engine.load(QUrl(QStringLiteral("qrc:/src/main.qml")));
-    if (engine.rootObjects().isEmpty())
-        return -1;
+    //engine.load(QUrl(QStringLiteral("qrc:/src/main.qml")));
+    //if (engine.rootObjects().isEmpty())
+    //    return -1;
 
-    QObject *rootObject = engine.rootObjects().first();
+//    QObject *rootObject = engine.rootObjects().first();
 
-    QObject *button = rootObject->findChild<QObject *>("helloWorld");
-    Canary *mainCanary = rootObject->findChild<Canary *>();
-    if(mainCanary)
-        mainCanary->setProperty("currentAlarm",2);
-    if(button){
-        button->setProperty("text","yeet");
-    }
-    else {
-        qDebug("not found");
-    }
+//    QObject *button = rootObject->findChild<QObject *>("helloWorld");
+//    Canary *mainCanary = rootObject->findChild<Canary *>();
+//    if(mainCanary)
+//        mainCanary->setProperty("currentAlarm",2);
+//    if(button){
+//        button->setProperty("text","yeet");
+//    }
+//    else {
+//        qDebug("not found");
+//    }
+
+    BirdieQtTools::engineInit();
+    BirdieQtTools::setQmlProperty("helloWorld","text","yeet");
 
     //Load the web configuration file
     QSettings* listenerSettings = new QSettings("../birdie/etc/webapp1.ini",QSettings::IniFormat,&app);

@@ -12,6 +12,8 @@ public:
     BirdieQtTools();
     Canary* getCanary() const{return &mCanary;}
     void setCanary(Canary *newCanary);
+    static int engineInit();
+    static int setQmlProperty(const QString &objectName, const char *propertyName, const char *propertyValue);
     static QQmlApplicationEngine engine;
     static QQmlApplicationEngine* getEngine() {return &engine;}
 private:

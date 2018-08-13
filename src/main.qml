@@ -12,11 +12,11 @@ Window {
         id: helloWorld
         text: "Hello, World!"
         objectName: "helloWorld"
-        onClicked: canary.currentAlarm = 2;
+        onClicked: canary.currentAlarm = 3;
     }
     Canary {
         id: canary
-        onCurrentAlarmChanged: helloWorld.text = "Alarm set!"
+        onCurrentAlarmChanged: helloWorld.text = currentAlarm
         currentAlarm: 1
     }
 }

@@ -3,6 +3,7 @@
 #include <QQmlContext>
 #include <QQmlEngine>
 #include <QQmlApplicationEngine>
+#include "birdieqttools.h"
 
 Q_GLOBAL_STATIC(Canary, myCanary)
 Q_GLOBAL_STATIC(QQmlApplicationEngine, engine)
@@ -15,5 +16,5 @@ HttpCanaryController::HttpCanaryController(QObject* parent) : HttpRequestHandler
 void HttpCanaryController::service(HttpRequest& request, HttpResponse& response){
     qDebug("CANARY ALERT");
     response.write("Request received");
-    myCanary->raiseAlarm(1);
+    BirdieQtTools::setQmlProperty("helloWorld","text","ALERT");
 }
