@@ -10,6 +10,7 @@
 #include "canary.h"
 #include <QtGlobal>
 #include "birdieqttools.h"
+#include "contentmanager.h"
 
 using namespace stefanfrings;
 
@@ -55,6 +56,7 @@ int main(int argc, char *argv[])
     QGuiApplication app(argc, argv);
 
     qmlRegisterType<Canary>("com.birdie.canary",1,0,"Canary");
+    qmlRegisterType<ContentManager>("com.birdie.content",1,0,"ContentManager");
 
     //Load the main QML file
     //QQmlApplicationEngine engine;

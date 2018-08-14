@@ -19,9 +19,11 @@ SOURCES += \
     src/requestmapper.cpp \
     src/httpcanarycontroller.cpp \
     src/canary.cpp \
-    src/birdieqttools.cpp
+    src/birdieqttools.cpp \
+    src/contentmanager.cpp
 
-RESOURCES += qml.qrc
+RESOURCES += qml.qrc \
+    resources.qrc
 
 # Additional import path used to resolve QML modules in Qt Creator's code model
 QML_IMPORT_PATH =
@@ -65,6 +67,7 @@ HEADERS += \
     src/requestmapper.h \
     src/httpcanarycontroller.h \
     src/canary.h \
-    src/birdieqttools.h
+    src/birdieqttools.h \
+    src/contentmanager.h
 
 OTHER_FILES += etc/webapp1.ini

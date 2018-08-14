@@ -1,0 +1,7 @@
+<RCC>
+    <qresource prefix="/slides">
+        <file alias="s1.jpg">res/slides/IMG_3818.JPG</file>
+        <file alias="s2.jpg">res/slides/IMG_3822.JPG</file>
+        <file alias="s3.jpg">res/slides/IMG_3841.JPG</file>
+    </qresource>
+</RCC>
