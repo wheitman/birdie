@@ -11,7 +11,7 @@ Window {
     Canary {
         id: canary
         objectName: "canary"
-        onCurrentAlarmChanged: console.log("Alarm changed")
+        onCurrentAlarmChanged: console.log("Current alarm code: "+currentAlarm)
         currentAlarm: 1
     }
 
@@ -28,7 +28,9 @@ Window {
         id: helloWorld
         text: "Hello, World!"
         objectName: "helloWorld"
-        onClicked: console.log(sourceList)
+        onClicked: {
+            console.log(sourceList)
+        }
     }
     StackView {
         anchors.top: parent.top
