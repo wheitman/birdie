@@ -7,7 +7,7 @@ import QtQuick.Controls 1.4
 
 Window {
     property var sourceList: contentManager.slideSources
-    property int slideIndex: 0
+    property int slideIndex: 1
 
     Canary {
         id: canary
@@ -25,7 +25,7 @@ Window {
         if(slideIndex == sourceList.length){
             slideIndex=0 //loop back around
         }
-        slideImage.source = "file:/slides/"+sourceList[slideIndex]
+        slideImage.source = "file:/C:/slides/"+sourceList[slideIndex]
         slideIndex++
     }
 
@@ -40,12 +40,14 @@ Window {
         objectName: "helloWorld"
         onClicked: {
             moveToNextSlide()
+            console.log(sourceList[slideIndex])
         }
     }
 
     Image {
         id: slideImage
-        source: "file:/slides/"+sourceList[0]
+        asynchronous: true
+        source: "file:/C:/slides/"+sourceList[0]
     }
 
     StackView {
