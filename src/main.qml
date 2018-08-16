@@ -7,6 +7,7 @@ import QtQuick.Controls 1.4
 
 Window {
     property var sourceList: contentManager.slideSources
+    property int slideIndex: 0
 
     Canary {
         id: canary
@@ -19,6 +20,15 @@ Window {
         id: contentManager
     }
 
+    function moveToNextSlide(){
+        //check for out-of-bounds
+        if(slideIndex == sourceList.length){
+            slideIndex=0 //loop back around
+        }
+        slideImage.source = "file:/slides/"+sourceList[slideIndex]
+        slideIndex++
+    }
+
     visible: true
     width: 1280
     height: 720
@@ -29,15 +39,22 @@ Window {
         text: "Hello, World!"
         objectName: "helloWorld"
         onClicked: {
-            console.log(sourceList)
+            moveToNextSlide()
         }
     }
+
+    Image {
+        id: slideImage
+        source: "file:/slides/"+sourceList[0]
+    }
+
     StackView {
         anchors.top: parent.top
         anchors.left: parent.left
         width: parent.width*.8
         height: parent.height*.8
         id: slides
+        initialItem: slideImage
         delegate: StackViewDelegate {
             function transitionFinished(properties)
             {

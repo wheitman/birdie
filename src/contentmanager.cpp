@@ -1,5 +1,5 @@
 #include "contentmanager.h"
-#include <QDirIterator>
+#include <QDir>
 
 ContentManager::ContentManager(QObject *parent) : QObject(parent)
 {
@@ -11,11 +11,8 @@ ContentManager::ContentManager(){
 }
 
 QStringList ContentManager::slideSources(){
-    QDirIterator slideDirIterator("C:/slides",QDirIterator::Subdirectories);
     QStringList sourceList;
-    while(slideDirIterator.hasNext()){
-        sourceList << "slideDirIterator";
-    }
-    sourceList << "Done";
+    QDir directory("C:/slides");
+    sourceList << directory.entryList(QStringList() << "*.jpg" << "*JPG",QDir::Files);
     return sourceList;
 }
