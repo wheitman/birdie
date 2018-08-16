@@ -22,11 +22,27 @@ Window {
 
     function moveToNextSlide(){
         //check for out-of-bounds
-        if(slideIndex == sourceList.length){
+        if(slideIndex === sourceList.length){
             slideIndex=0 //loop back around
+            slides.clear()
         }
-        slideImage.source = "file:/C:/slides/"+sourceList[slideIndex]
-        slideIndex++
+        console.log(slideIndex)
+        if(slides.get(0)===slideImageA){
+            console.log('Pushing B')
+            slideImageB.source = "file:/C:/slides/"+sourceList[slideIndex]
+            slides.clear()
+            slides.push(slideImageB)
+            //slides.pop(slideImageA)
+            slideIndex++
+        }
+        else{
+            console.log("Pushing A")
+            slideImageA.source = "file:C:/slides/"+sourceList[slideIndex]
+            slides.clear()
+            slides.push(slideImageA)
+            //slides.pop(slideImageB)
+            slideIndex++
+        }
     }
 
     visible: true
@@ -39,46 +55,18 @@ Window {
         text: "Hello, World!"
         objectName: "helloWorld"
         onClicked: {
-            moveToNextSlide()
-            console.log(sourceList[slideIndex])
+            slideFrame.nextSlide()
         }
     }
 
-    Image {
-        id: slideImage
-        asynchronous: true
-        source: "file:/C:/slides/"+sourceList[0]
-    }
-
-    StackView {
+    SlideFrame{
+        id: slideFrame
+        sources: sourceList
+        Component.onCompleted: console.log(sources)
         anchors.top: parent.top
         anchors.left: parent.left
         width: parent.width*.8
         height: parent.height*.8
-        id: slides
-        initialItem: slideImage
-        delegate: StackViewDelegate {
-            function transitionFinished(properties)
-            {
-                properties.exitItem.opacity = 1
-            }
-
-            pushTransition: StackViewTransition {
-                PropertyAnimation {
-                    target: enterItem
-                    property: "opacity"
-                    from: 0
-                    to: 1
-                    duration: 2000
-                }
-                PropertyAnimation {
-                    target: exitItem
-                    property: "opacity"
-                    from: 1
-                    to: 0
-                    duration: 2000
-                }
-            }
-        }
     }
+
 }
