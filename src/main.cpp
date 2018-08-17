@@ -57,6 +57,7 @@ int main(int argc, char *argv[])
 
     qmlRegisterType<Canary>("com.birdie.canary",1,0,"Canary");
     qmlRegisterType<ContentManager>("com.birdie.content",1,0,"ContentManager");
+    qmlRegisterType<BirdieQtTools>("com.birdie.qttools",1,0,"BirdieQtTools");
 
     //Load the main QML file
     //QQmlApplicationEngine engine;

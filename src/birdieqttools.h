@@ -4,6 +4,9 @@
 #include <QObject>
 #include "canary.h"
 #include <QQmlApplicationEngine>
+#include <QDir>
+#include <QSettings>
+#include <QCoreApplication>
 
 class BirdieQtTools : public QObject
 {
@@ -16,9 +19,11 @@ public:
     static int setQmlProperty(const QString &objectName, const char *propertyName, const char *propertyValue);
     static QQmlApplicationEngine engine;
     static QQmlApplicationEngine* getEngine() {return &engine;}
+    QDir getRootDir() const {return mRoot;}
 private:
     static Canary mCanary;
-
+    static QDir mRoot;
+    void initSettings();
 signals:
 
 public slots:

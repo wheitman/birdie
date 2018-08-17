@@ -2,6 +2,7 @@ import QtQuick 2.0
 
 Rectangle {
     property var sources: null
+    property string slideDir: null
     property int sourceIndex: 2
     property int fadeDuration: 500 //ms
 
@@ -10,15 +11,12 @@ Rectangle {
     }
 
     function pushSources(){
-        console.log(sourceIndex)
         if(sourceIndex===sources.length){sourceIndex=0} //loop around
         if(slideA.opacity===0){ //if slideB is currently shown
-            slideA.source="file:/C:/slides/"+sources[sourceIndex]
-            console.log("Adding "+sources[sourceIndex])
+            slideA.source=slideDir+"/"+sources[sourceIndex]
         }
         else{ //if slideA is currently shown
-            slideB.source="file:/C:/slides/"+sources[sourceIndex]
-            console.log("Adding "+sources[sourceIndex])
+            slideB.source=slideDir+"/"+sources[sourceIndex]
         }
 
         sourceIndex++
@@ -57,13 +55,13 @@ Rectangle {
     Image {
         anchors.fill: parent
         id: slideA
-        source: "file:/C:/slides/"+sources[0]
+        source: slideDir+"/"+sources[0]
         asynchronous: true
     }
     Image {
         anchors.fill: parent
         id: slideB
-        source: "file:/C:/slides/"+sources[1]
+        source: slideDir+"/"+sources[1]
         opacity: 0 //start hidden
         asynchronous: true
     }

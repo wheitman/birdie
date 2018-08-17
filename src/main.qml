@@ -4,10 +4,16 @@ import QtQuick.Window 2.2
 import com.birdie.canary 1.0
 import com.birdie.content 1.0
 import QtQuick.Controls 1.4
+import com.birdie.qttools 1.0
 
 Window {
     property var sourceList: contentManager.slideSources
+    property string slideDir: contentManager.slideDir
     property int slideIndex: 1
+
+    BirdieQtTools{
+
+    }
 
     Canary {
         id: canary
@@ -62,7 +68,7 @@ Window {
     SlideFrame{
         id: slideFrame
         sources: sourceList
-        Component.onCompleted: console.log(sources)
+        slideDir: contentManager.slideDir
         anchors.top: parent.top
         anchors.left: parent.left
         width: parent.width*.8

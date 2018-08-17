@@ -1,8 +1,24 @@
 #include "birdieqttools.h"
-#include "canary.h"
 #include <QQmlApplicationEngine>
+#include <QCoreApplication>
+#include <QStandardPaths>
 
 Q_GLOBAL_STATIC(QQmlApplicationEngine, appEngine)
+
+QDir BirdieQtTools::mRoot("/");
+
+BirdieQtTools::BirdieQtTools(){
+    initSettings();
+}
+
+void BirdieQtTools::initSettings(){
+    QSettings *settings = new QSettings("Heitman", "Birdie");
+    mRoot = QDir(settings->value("root").toString());
+    if(mRoot.currentPath()==""){
+        qWarning("BirdieQtTools: could not read root config. Setting root to default.");
+        settings->setValue("root",QStandardPaths::standardLocations(QStandardPaths::AppDataLocation).first()+"/");
+    }
+}
 
 int BirdieQtTools::engineInit(){
     appEngine->load(QUrl(QStringLiteral("qrc:/src/main.qml")));
