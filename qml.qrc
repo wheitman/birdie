@@ -2,5 +2,6 @@
     <qresource prefix="/">
         <file>src/main.qml</file>
         <file>src/SlideFrame.qml</file>
+        <file>src/Ticker.qml</file>
     </qresource>
 </RCC>

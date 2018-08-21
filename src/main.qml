@@ -82,4 +82,12 @@ Window {
         height: parent.height*.8
     }
 
+    Ticker {
+        id: ticker
+        anchors.top: slideFrame.bottom
+        anchors.left: parent.left
+        anchors.right: parent.right
+        height: parent.height*.08
+    }
+
 }
