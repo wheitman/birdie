@@ -13,8 +13,11 @@ ContentManager::ContentManager(){
 
 void ContentManager::initSlideDirectory(){
     BirdieQtTools tools;
-    if(!QDir(tools.getRootDir().absolutePath().toLatin1().append("/slides")).exists())
+    if(!QDir(tools.getRootDir().absolutePath().toLatin1().append("/slides")).exists()){
+        qInfo("Making slide directory");
+        QDir().mkdir(tools.getRootDir().absolutePath().toLatin1());
         QDir().mkdir(tools.getRootDir().absolutePath().toLatin1().append("/slides"));
+    }
 }
 
 QStringList ContentManager::slideSources(){

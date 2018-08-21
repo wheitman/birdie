@@ -13,10 +13,14 @@ BirdieQtTools::BirdieQtTools(){
 
 void BirdieQtTools::initSettings(){
     QSettings *settings = new QSettings("Heitman", "Birdie");
+    qDebug(settings->value("root").toString().toLatin1());
     mRoot = QDir(settings->value("root").toString());
-    if(mRoot.currentPath()==""){
+    if(settings->value("root").toString().toLatin1()==""){
         qWarning("BirdieQtTools: could not read root config. Setting root to default.");
         settings->setValue("root",QStandardPaths::standardLocations(QStandardPaths::AppDataLocation).first()+"/");
+    }
+    else{
+        qInfo("Root is: "+mRoot.absolutePath().toLatin1());
     }
 }
 
