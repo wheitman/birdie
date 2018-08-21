@@ -55,6 +55,13 @@ Window {
     width: 1280
     height: 720
     title: qsTr("Hello World")
+
+    Image {
+        id: backgroundGradient
+        source: "qrc:/images/background.png"
+        anchors.fill: parent
+    }
+
     Button {
         anchors.bottom: parent.bottom
         id: helloWorld
