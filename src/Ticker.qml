@@ -1,11 +1,8 @@
 import QtQuick 2.0
 
 Rectangle {
-
-    border.color: "#ffffff"
-    opacity: .5
-    border.width: 2
-    color: "transparent"
-    anchors.topMargin: 4
-
+    radius: 3
+    color: "#ffffff"
+    opacity: .2
+    anchors.margins: 5
 }

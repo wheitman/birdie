@@ -11,8 +11,15 @@ Window {
     property string slideDir: contentManager.slideDir
     property int slideIndex: 1
 
+
     BirdieQtTools{
 
+    }
+
+    Timer {
+        id: slideTimer
+        interval: 5000; running: true; repeat: true
+        onTriggered: slideFrame.nextSlide()
     }
 
     Canary {
@@ -24,31 +31,6 @@ Window {
 
     ContentManager {
         id: contentManager
-    }
-
-    function moveToNextSlide(){
-        //check for out-of-bounds
-        if(slideIndex === sourceList.length){
-            slideIndex=0 //loop back around
-            slides.clear()
-        }
-        console.log(slideIndex)
-        if(slides.get(0)===slideImageA){
-            console.log('Pushing B')
-            slideImageB.source = "file:/C:/slides/"+sourceList[slideIndex]
-            slides.clear()
-            slides.push(slideImageB)
-            //slides.pop(slideImageA)
-            slideIndex++
-        }
-        else{
-            console.log("Pushing A")
-            slideImageA.source = "file:C:/slides/"+sourceList[slideIndex]
-            slides.clear()
-            slides.push(slideImageA)
-            //slides.pop(slideImageB)
-            slideIndex++
-        }
     }
 
     visible: true
@@ -87,7 +69,32 @@ Window {
         anchors.top: slideFrame.bottom
         anchors.left: parent.left
         anchors.right: parent.right
-        height: parent.height*.08
+        height: parent.height*.1
+    }
+
+    Image {
+        id: lsmsaLogo
+        source: "qrc:/images/lsmsa.png"
+        anchors.top: ticker.bottom; anchors.bottom: parent.bottom
+        fillMode: Image.PreserveAspectFit
+        anchors.horizontalCenter: parent.horizontalCenter
+    }
+
+
+
+    Clock{
+        anchors.right: ticker.right
+        anchors.top: ticker.bottom
+        anchors.bottom: parent.bottom
+        height: parent.height * .1
+        width: height*3
+    }
+
+    EventsBox {
+        anchors.left: slideFrame.right
+        anchors.right: parent.right
+        anchors.top: parent.top
+        anchors.bottom: ticker.top
     }
 
 }

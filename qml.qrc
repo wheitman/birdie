@@ -3,5 +3,7 @@
         <file>src/main.qml</file>
         <file>src/SlideFrame.qml</file>
         <file>src/Ticker.qml</file>
+        <file>src/EventsBox.qml</file>
+        <file>src/Clock.qml</file>
     </qresource>
 </RCC>
