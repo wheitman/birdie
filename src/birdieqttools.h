@@ -11,6 +11,7 @@
 class BirdieQtTools : public QObject
 {
     Q_OBJECT
+    Q_PROPERTY(QDir rootDir READ getRootDir NOTIFY rootDirChanged)
 public:
     BirdieQtTools();
     Canary* getCanary() const{return &mCanary;}
@@ -25,7 +26,7 @@ private:
     static QDir mRoot;
     void initSettings();
 signals:
-
+    void rootDirChanged();
 public slots:
 };
 

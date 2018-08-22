@@ -19,7 +19,7 @@ void BirdieQtTools::initSettings(){
         settings->setValue("root",QStandardPaths::standardLocations(QStandardPaths::AppDataLocation).first()+"/");
     }
     else{
-        qInfo("Root is: "+mRoot.absolutePath().toLatin1());
+        //qInfo("Root is: "+mRoot.absolutePath().toLatin1());
     }
 }
 

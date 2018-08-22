@@ -44,15 +44,15 @@ Window {
         anchors.fill: parent
     }
 
-    Button {
-        anchors.bottom: parent.bottom
-        id: helloWorld
-        text: "Hello, World!"
-        objectName: "helloWorld"
-        onClicked: {
-            slideFrame.nextSlide()
-        }
-    }
+//    Button {
+//        anchors.bottom: parent.bottom
+//        id: helloWorld
+//        text: "Hello, World!"
+//        objectName: "helloWorld"
+//        onClicked: {
+//            slideFrame.nextSlide()
+//        }
+//    }
 
     SlideFrame{
         id: slideFrame
@@ -62,6 +62,7 @@ Window {
         anchors.left: parent.left
         width: parent.width*.8
         height: parent.height*.8
+        Component.onCompleted: console.log("Slide directory: "+contentManager.slideDir)
     }
 
     Ticker {
