@@ -20,7 +20,8 @@ SOURCES += \
     src/httpcanarycontroller.cpp \
     src/canary.cpp \
     src/birdieqttools.cpp \
-    src/contentmanager.cpp
+    src/contentmanager.cpp \
+    src/fileuploadcontroller.cpp
 
 RESOURCES += qml.qrc \
     resources.qrc
@@ -68,6 +69,7 @@ HEADERS += \
     src/httpcanarycontroller.h \
     src/canary.h \
     src/birdieqttools.h \
-    src/contentmanager.h
+    src/contentmanager.h \
+    src/fileuploadcontroller.h
 
 OTHER_FILES += etc/webapp1.ini

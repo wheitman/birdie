@@ -16,6 +16,7 @@ public:
     ContentManager(QObject *parent);
     QStringList slideSources();
     QString getSlideDir();
+    QString getPlainSlideDir();
 private:
     void initSlideDirectory();
 signals:

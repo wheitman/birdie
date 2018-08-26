@@ -86,6 +86,11 @@ int main(int argc, char *argv[])
     QSettings* listenerSettings = new QSettings("../birdie/etc/webapp1.ini",QSettings::IniFormat,&app);
     listenerSettings->beginGroup("listener");
 
+    //Static file controller
+    QSettings* fileSettings = new QSettings("../birdie/etc/webapp1.ini",QSettings::IniFormat,&app);
+    fileSettings->beginGroup("files");
+    RequestMapper::staticFileController = new StaticFileController(fileSettings, &app);
+
     //Start the HTTP server
     new HttpListener(listenerSettings, new RequestMapper(&app), &app);
 

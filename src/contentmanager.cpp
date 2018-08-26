@@ -33,3 +33,7 @@ QString ContentManager::getSlideDir(){
     BirdieQtTools tools;
     return "file:///"+tools.getRootDir().absolutePath().toLatin1().append("/slides");
 }
+
+QString ContentManager::getPlainSlideDir(){
+    return BirdieQtTools().getRootDir().absolutePath().toLatin1().append("/slides");
+}

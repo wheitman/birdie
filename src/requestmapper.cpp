@@ -1,6 +1,7 @@
 #include "requestmapper.h"
 #include <QQmlApplicationEngine>
 #include "httpcanarycontroller.h"
+#include "fileuploadcontroller.h"
 
 HttpSessionStore* RequestMapper::sessionStore=0;
 StaticFileController* RequestMapper::staticFileController=0;
@@ -16,6 +17,12 @@ void RequestMapper::service(HttpRequest& request, HttpResponse& response){
 
     if(path=="/canary") {
         httpCanaryController.service(request, response);
+    }
+    else if (path.startsWith("/slides")){
+        staticFileController->service(request,response);
+    }
+    else if (path=="/upload"){
+        FileUploadController().service(request,response);
     }
     else {
         response.setStatus(404, "Not found");
