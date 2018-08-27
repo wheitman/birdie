@@ -5,6 +5,7 @@
 #include "httpsessionstore.h"
 #include "staticfilecontroller.h"
 #include "httpcanarycontroller.h"
+#include "templatecache.h"
 
 using namespace stefanfrings;
 
@@ -16,6 +17,7 @@ public:
     void service(HttpRequest& request, HttpResponse& response);
     static HttpSessionStore* sessionStore;
     static StaticFileController* staticFileController;
+    static TemplateCache* templateCache;
 private:
     HttpCanaryController httpCanaryController;
 };

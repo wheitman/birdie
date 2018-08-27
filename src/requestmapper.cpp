@@ -5,6 +5,7 @@
 
 HttpSessionStore* RequestMapper::sessionStore=0;
 StaticFileController* RequestMapper::staticFileController=0;
+TemplateCache* RequestMapper::templateCache=0;
 
 RequestMapper::RequestMapper(QObject* parent) : HttpRequestHandler (parent)
 {

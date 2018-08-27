@@ -86,6 +86,11 @@ int main(int argc, char *argv[])
     QSettings* listenerSettings = new QSettings("../birdie/etc/webapp1.ini",QSettings::IniFormat,&app);
     listenerSettings->beginGroup("listener");
 
+    // Configure template cache
+    QSettings* templateSettings=new QSettings("../birdie/etc/webapp1.ini",QSettings::IniFormat,&app);
+    templateSettings->beginGroup("templates");
+    RequestMapper::templateCache=new TemplateCache(templateSettings,&app);
+
     //Static file controller
     QSettings* fileSettings = new QSettings("../birdie/etc/webapp1.ini",QSettings::IniFormat,&app);
     fileSettings->beginGroup("files");
