@@ -6,6 +6,7 @@
 #include "staticfilecontroller.h"
 #include "httpcanarycontroller.h"
 #include "templatecache.h"
+#include "httpmanifestcontroller.h"
 
 using namespace stefanfrings;
 
@@ -20,6 +21,7 @@ public:
     static TemplateCache* templateCache;
 private:
     HttpCanaryController httpCanaryController;
+    httpmanifestcontroller httpManifestController;
 };
 
 #endif // REQUESTMAPPER_H

@@ -5,12 +5,9 @@
 #include <QQmlApplicationEngine>
 #include "birdieqttools.h"
 
-Q_GLOBAL_STATIC(Canary, myCanary)
-Q_GLOBAL_STATIC(QQmlApplicationEngine, engine)
-
 HttpCanaryController::HttpCanaryController(QObject* parent) : HttpRequestHandler (parent)
 {
-    //empty
+
 }
 
 void HttpCanaryController::service(HttpRequest& request, HttpResponse& response){

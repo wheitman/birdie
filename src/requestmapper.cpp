@@ -25,6 +25,9 @@ void RequestMapper::service(HttpRequest& request, HttpResponse& response){
     else if (path=="/upload"){
         FileUploadController().service(request,response);
     }
+    else if (path=="/manifest"){
+        httpManifestController.service(request, response);
+    }
     else {
         response.setStatus(404, "Not found");
         response.write("We couldn't retrieve the URL you asked for.",true);
