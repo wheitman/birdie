@@ -10,16 +10,17 @@ Window {
     property var sourceList: contentManager.slideSources
     property string slideDir: contentManager.slideDir
     property int slideIndex: 1
-
+    property string manifestString: tools.manifestString
 
     BirdieQtTools{
-
+        id: tools
     }
 
     Timer {
         id: slideTimer
         interval: 5000; running: true; repeat: true
-        onTriggered: slideFrame.nextSlide()
+        onTriggered: {slideFrame.nextSlide()
+            console.log(tools.manifestString)}
     }
 
     Canary {

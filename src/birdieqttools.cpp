@@ -2,10 +2,13 @@
 #include <QQmlApplicationEngine>
 #include <QCoreApplication>
 #include <QStandardPaths>
+#include <QTextStream>
 
 Q_GLOBAL_STATIC(QQmlApplicationEngine, appEngine)
 
 QDir BirdieQtTools::mRoot("/");
+
+QFile BirdieQtTools::mManifestFile(QSettings("Heitman", "Birdie").value("root").toString()+"/files/manifest.json");
 
 BirdieQtTools::BirdieQtTools(){
     initSettings();
@@ -21,6 +24,15 @@ void BirdieQtTools::initSettings(){
     else{
         //qInfo("Root is: "+mRoot.absolutePath().toLatin1());
     }
+}
+
+QString BirdieQtTools::getManifestString(){
+    QFile manifest(QSettings("Heitman", "Birdie").value("root").toString()+"/files/manifest.json");
+    manifest.open(QFile::ReadOnly);
+    QTextStream in(&manifest);
+    QString manifestString = in.readAll();
+    manifest.close();
+    return manifestString;
 }
 
 int BirdieQtTools::engineInit(){

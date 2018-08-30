@@ -22,6 +22,9 @@ void RequestMapper::service(HttpRequest& request, HttpResponse& response){
     else if (path.startsWith("/slides")){
         staticFileController->service(request,response);
     }
+    else if (path.startsWith("/files")){
+        staticFileController->service(request,response);
+    }
     else if (path=="/upload"){
         FileUploadController().service(request,response);
     }
