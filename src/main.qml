@@ -10,17 +10,34 @@ Window {
     property var sourceList: contentManager.slideSources
     property string slideDir: contentManager.slideDir
     property int slideIndex: 1
-    property string manifestString: tools.manifestString
+    property var manifestObj
 
     BirdieQtTools{
         id: tools
+        Component.onCompleted: {
+            manifestObj = JSON.parse(manifestString)
+            updateTicker();
+            //ticker.text = "\u203B"//manifestObj.ticks[0]
+        }
+    }
+
+    function updateTicker(){
+        var text = "";
+        console.log("size: "+manifestObj.ticks.length)
+        for(var i = 0; i<manifestObj.ticks.length-1; i++){
+            text += manifestObj.ticks[i] + "     \u205E     "
+        }
+        text += manifestObj.ticks[manifestObj.ticks.length-1]
+        ticker.text = text
     }
 
     Timer {
         id: slideTimer
         interval: 5000; running: true; repeat: true
-        onTriggered: {slideFrame.nextSlide()
-            console.log(tools.manifestString)}
+        onTriggered: {
+            slideFrame.nextSlide()
+            console.log(tools.manifestString)
+        }
     }
 
     Canary {

@@ -17,6 +17,7 @@ public:
     QStringList slideSources();
     QString getSlideDir();
     QString getPlainSlideDir();
+    //QStringList getTickerItems();
 private:
     void initSlideDirectory();
 signals:
