@@ -5,5 +5,8 @@
         <file>src/Ticker.qml</file>
         <file>src/EventsBox.qml</file>
         <file>src/Clock.qml</file>
+        <file>src/EventModel.qml</file>
+        <file>src/EventCard.qml</file>
+        <file>src/CanaryView.qml</file>
     </qresource>
 </RCC>

@@ -12,6 +12,15 @@ HttpCanaryController::HttpCanaryController(QObject* parent) : HttpRequestHandler
 
 void HttpCanaryController::service(HttpRequest& request, HttpResponse& response){
     qDebug("CANARY ALERT");
-    response.write("Request received");
-    BirdieQtTools::setQmlProperty("canary","currentAlarm","0");
+    response.write("{\"status\":\"success\"}");
+    Canary c;
+    BirdieQtTools::setQmlProperty("canary","currentAlarm",request.getParameter("type"));
+    BirdieQtTools::setQmlProperty("canary","body",request.getParameter("body"));
+    BirdieQtTools::setQmlProperty("canary","title",request.getParameter("title"));
+
+    try {
+        c.setLevel(request.getParameter("level").at(0));
+    }catch(const std::exception&){
+        qWarning("HttpCanaryController: setLevel error");
+    }
 }

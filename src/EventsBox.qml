@@ -3,6 +3,7 @@ import QtQuick 2.0
 Item {
 
     anchors.margins: 5
+    property var eventArray
 
     Rectangle {
         anchors.top: parent.top
@@ -45,16 +46,42 @@ Item {
         radius: 3
     }
 
-    Text {
-        id: mainText
+    function updateList(){
+        for(var i = 0; i<eventArray.length; i++){
+            eventList.model.append({title: eventArray[i].title, time: eventArray[i].time, planner: eventArray[i].planner, location: eventArray[i].location, description: eventArray[i].description})
+            console.log("Appending: "+eventArray[i].title)
+        }
+    }
+
+    ListView{
+        id: eventList
         anchors.top: titleBox.bottom
         anchors.bottom: mainBox.bottom
         anchors.left: mainBox.left
         anchors.right: mainBox.right
-        text: "Lorem ipsum dolor sit amet"
-        color: "white"
-        font.family: openSans.name
-        anchors.margins: 5
+        anchors.margins: 8
+        spacing: 5
+        model: EventModel {}
+        delegate: EventCard {
+            title: model.title
+            time: model.time
+            planner: model.planner
+            location: model.location
+            description: model.description
+            width: parent.width
+        }
     }
+
+//    Text {
+//        id: mainText
+//        anchors.top: titleBox.bottom
+//        anchors.bottom: mainBox.bottom
+//        anchors.left: mainBox.left
+//        anchors.right: mainBox.right
+//        text: eventArray[0].title
+//        color: "white"
+//        font.family: openSans.name
+//        anchors.margins: 5
+//    }
 
 }

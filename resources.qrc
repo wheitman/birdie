@@ -9,4 +9,9 @@
         <file alias="os.ttf">res/fonts/OpenSans-Regular.ttf</file>
         <file alias="osbold.ttf">res/fonts/OpenSans-Bold.ttf</file>
     </qresource>
+    <qresource prefix="/sounds">
+        <file alias="goodthings.mp3">res/sounds/good-things-happen.mp3</file>
+        <file alias="open-your-eyes.mp3">res/sounds/open-your-eyes-and-see.mp3</file>
+        <file alias="calling.mp3">res/sounds/the-calling.mp3</file>
+    </qresource>
 </RCC>
